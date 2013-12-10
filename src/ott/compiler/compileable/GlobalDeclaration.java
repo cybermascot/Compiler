@@ -32,6 +32,8 @@ public class GlobalDeclaration implements Compilable {
             expression = new Expression();
             expression.parse(info);
         }
+
+        pullToken(info.tokens, ";");
         info.globals.add(variable);
     }
 
