@@ -1,0 +1,8 @@
+
+
+MOVI R1, x
+
+MOVI R0, 10
+LDR R1
+
+MOVI R1, x

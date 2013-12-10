@@ -1,0 +1,9 @@
+
+var x = 10
+var bob = x + 1
+var t
+
+function main() {
+    var a = x + bob
+}
+
