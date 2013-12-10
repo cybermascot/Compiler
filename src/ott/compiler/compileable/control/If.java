@@ -1,10 +1,10 @@
-package ott.compiler.compileable.code;
+package ott.compiler.compileable.control;
 
 import ott.compiler.compileable.*;
 
 import java.util.*;
 
-public class CodeBlock implements Compilable {
+public class If implements Compilable {
 
     @Override
     public void parse(CompilableInfo info) {
