@@ -4,6 +4,7 @@ import ott.compiler.*;
 import ott.parsing.*;
 
 import java.util.*;
+import java.util.function.*;
 
 public class Helper {
 
@@ -112,6 +113,13 @@ public class Helper {
         destination.clear();
         for (K key : source.keySet()) {
             destination.put(key, source.get(key));
+        }
+    }
+
+    public static <K> void removeIf(Map<K,?> map, Predicate<K> predicate) {
+        for (K key : map.keySet()) {
+            if (predicate.test(key))
+                map.remove(key);
         }
     }
 }

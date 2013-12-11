@@ -1,6 +1,5 @@
 package ott.compiler.compileable.code;
 
-import ott.*;
 import ott.compiler.*;
 import ott.compiler.compileable.*;
 import ott.compiler.compileable.math.*;
