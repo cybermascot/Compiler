@@ -19,6 +19,7 @@ public class While implements Compilable {
         pullToken(info.tokens, "while");
         pullToken(info.tokens, "(");
         condition = new Condition(afterLabel);
+        condition.parse(info);
         pullToken(info.tokens, ")");
 
         code = new CodeBlock();
