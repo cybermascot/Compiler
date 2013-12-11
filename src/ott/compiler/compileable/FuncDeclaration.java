@@ -12,7 +12,7 @@ import static ott.compiler.compileable.Helper.*;
 public class FuncDeclaration implements Compilable {
 
     private String function;
-    private Code[] code;
+    private CodeBlock code;
     private int stackFrameSize;
     private int numOfParameters;
 
@@ -27,7 +27,8 @@ public class FuncDeclaration implements Compilable {
         String[] params = pullParams(info);
         numOfParameters = params.length;
         info.stackIndex++; // add pushed R14
-        pullCode(info);
+        code = new CodeBlock();
+        code.parse(info);
         info.stackIndex--; // remove pushed R14 (into R15)
 
         info.stackIndex -= params.length; // pop params off stack (virtually)
@@ -41,21 +42,7 @@ public class FuncDeclaration implements Compilable {
 
     @Override
     public void secondParse(Map<String, Integer> functions) {
-        for (Code c : code) {
-            c.secondParse(functions);
-        }
-    }
-
-    private void pullCode(CompilableInfo info) {
-        List<Code> codes = new ArrayList<>(20);
-        pullToken(info.tokens, "{");
-        while (!isNextValue(info.tokens, "}")) {
-            Code c = new Code();
-            c.parse(info);
-            codes.add(c);
-        }
-        pullToken(info.tokens, "}");
-        code = codes.toArray(new Code[codes.size()]);
+        code.secondParse(functions);
     }
 
     private String[] pullParams(CompilableInfo info) {
@@ -86,9 +73,7 @@ public class FuncDeclaration implements Compilable {
         appendLine(builder, function, ":"); // add function label
         appendLine(builder, "PUSH R14");
 
-        for (Code c : code) {
-            c.generate(builder);
-        }
+        code.generate(builder);
 
         for (int i = 0; i < stackFrameSize; i++) {
             appendLine(builder, "POP R1"); // TODO fix to be just 'POP' instead of popping into R1
