@@ -53,7 +53,7 @@ public class Program {
     }
 
     private void parseOperation(Queue<Token> input, Map<Integer, Parsable> result, Map<String, Integer> labels, Index index) {
-        if (input.peek().type() == AssemblerTokens.LABEL) {
+        while (input.peek().type() == AssemblerTokens.LABEL) {
             labels.put(cleanLabel(input.poll().value()), index.value()); // word value // puts the label in the map (removing the colon) and puts it at the location in the list (hense the size - the next spot to be taken)
         }
 
