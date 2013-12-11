@@ -10,10 +10,17 @@ public class CompilableInfo {
     public Set<String> globals;
     public int stackIndex;
 
+    private int labelIndex;
+
     public CompilableInfo(Queue<Token> tokens) {
         this.tokens = tokens;
         variables = new HashMap<>();
         globals = new HashSet<>();
         stackIndex = 0;
+        labelIndex = 0;
+    }
+
+    public String generateLabel() {
+        return "LABEL_" + Integer.toHexString(labelIndex++).toUpperCase();
     }
 }

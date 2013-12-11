@@ -1,22 +1,42 @@
 package ott.compiler.compileable.control;
 
 import ott.compiler.compileable.*;
+import ott.compiler.compileable.code.*;
 
 import java.util.*;
+import static ott.compiler.compileable.Helper.*;
 
 public class While implements Compilable {
+    private String beforeLabel;
+    private String afterLabel;
+    private Condition condition;
+    private CodeBlock code;
+
     @Override
     public void parse(CompilableInfo info) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        beforeLabel = info.generateLabel();
+        afterLabel = info.generateLabel();
+        pullToken(info.tokens, "while");
+        pullToken(info.tokens, "(");
+        condition = new Condition(afterLabel);
+        pullToken(info.tokens, ")");
+
+        code = new CodeBlock();
+        code.parse(info);
     }
 
     @Override
     public void secondParse(Map<String, Integer> functions) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        condition.secondParse(functions);
+        code.secondParse(functions);
     }
 
     @Override
     public void generate(StringBuilder builder) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        appendLine(builder, beforeLabel, ":");
+        condition.generate(builder);
+        code.generate(builder);
+        appendLine(builder, "B ", beforeLabel);
+        appendLine(builder, afterLabel, ":");
     }
 }
