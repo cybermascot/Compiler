@@ -1,9 +1,26 @@
 
-var x = 10
-var bob = x + 1
-var t
-
 function main() {
-    var a = x + bob
+
+    while (1 != 1) {
+    }
+
+    var gpioBase = 0x20200000;
+    Write(gpioBase + 4, 0x00040000); // turn controller on
+    while (1==1) {
+        turnLightOn(gpioBase);
+
+        Delay(0x00400000);
+
+        turnLightOff(gpioBase);
+
+        Delay(0x00400000);
+    }
 }
 
+function turnLightOn(var base) {
+    Write(base + 40, 0x00010000);
+}
+
+function turnLightOff(var base) {
+    Write(base + 28, 0x00010000);
+}

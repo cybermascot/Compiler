@@ -17,9 +17,6 @@ public class Program {
     private GlobalDeclaration[] globalDeclarations;
 
     public void parse(Queue<Token> tokens) {
-//        Map<String, Integer> variables = new HashMap<>();
-//        Set<String> globals = new HashSet<>();
-//        Index stackIndex = new Index();
         CompilableInfo info = new CompilableInfo(tokens);
         Map<String, Integer> functions = new HashMap<>();
 
@@ -70,8 +67,7 @@ public class Program {
             v.generate(builder);
         }
 
-        appendLine(builder, "INDEFLOOP: BL main"); // start of program - branch to main subroutine
-        appendLine(builder, "B INDEFLOOP"); // broken loop main method call TODO fix
+        appendLine(builder, "B main"); // start of program - branch to main subroutine
 
         for (FuncDeclaration f : funcDeclarations) {
             f.generate(builder);
