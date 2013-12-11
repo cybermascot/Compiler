@@ -8,11 +8,11 @@ public enum CompilerTokens implements TokenType {
     ADD_OP("\\+|-"),
     MUL_OP("\\*"),
     NUMBER("0x(\\d|[A-F])+|\\d+"),
+    CONDITION_OP(ConditionOpType.getRegex()),
     SPECIAL("\\(|\\)|=|;|,"),
     FUNCTION("function "),
     VARIABLE("var "),
     CONTROL("if|else|while"), // do|for
-    CONDITION_OP(ConditionOpType.getRegex()),
     LABEL("[a-zA-z]([a-zA-z]|\\d)*"),
     UNKOWN("\\S+"); // aggressive regex for anything not already registered
 
