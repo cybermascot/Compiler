@@ -1,5 +1,6 @@
 package ott.compiler;
 
+import ott.compiler.compileable.types.ConditionOpType;
 import ott.parsing.*;
 
 public enum CompilerTokens implements TokenType {
@@ -11,7 +12,7 @@ public enum CompilerTokens implements TokenType {
     FUNCTION("function "),
     VARIABLE("var "),
     CONTROL("if|else|while"), // do|for
-    CONDITION_OP("==|!=|<|>|<=|>="),
+    CONDITION_OP(ConditionOpType.getRegex()),
     LABEL("[a-zA-z]([a-zA-z]|\\d)*"),
     UNKOWN("\\S+"); // aggressive regex for anything not already registered
 
