@@ -8,14 +8,14 @@ import static ott.compiler.compileable.Helper.*;
 
 public class Control implements Compilable {
 
-    Compilable control;
+    private Compilable control;
 
     @Override
     public void parse(CompilableInfo info) {
-        if (isNextValue(info.tokens, "if")) {
-            control = new If();
-        } else {
+        if (isNextValue(info.tokens, "while")) {
             control = new While();
+        } else {
+            control = new If();
         }
         control.parse(info);
     }
