@@ -101,6 +101,13 @@ public class Helper {
         return ret;
     }
 
+    public static boolean isElseIf(Queue<Token> input) {
+        boolean ret = input.size() > 2;
+        ret = ret && isNextValue(input, "else");
+        ret = ret && peek(input, 1).value().equals("if"); // see if next item is '('  eg. LABEL(  - then is function invoke
+        return ret;
+    }
+
     public static <K, V> Map<K, V> copy(Map<K, V> map) {
         Map<K, V> copy = new HashMap<>();
         for (K key : map.keySet()) {

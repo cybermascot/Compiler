@@ -55,9 +55,9 @@ public class Compiler {
         File dest = new File("assembly.asm");
         compile(source, dest);
 
-        Assembler.assemble(dest, new File("kernel.img"));
 
         System.out.println(readFile(dest));
+        Assembler.assemble(dest, new File("kernel.img"));
         System.out.println("Wrote to kernel.img");
     }
 
