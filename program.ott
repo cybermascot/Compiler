@@ -1,36 +1,21 @@
 
 function main() {
 
-   // while (1 != 1) {
-   // }
+    // while (1 == 1) {
 
-   if (1 != 1) {
-        something();
-   } else {
-        something();
-        somethingElse();
-   }
+    // }
 
-   // var gpioBase = 0x20200000;
-   // Write(gpioBase + 4, 0x00040000); // turn controller on
-   // while (1==1) {
-   //     turnLightOn(gpioBase);
-//
-   //     Delay(0x00400000);
-//
-   //     turnLightOff(gpioBase);
-//
-   //     Delay(0x00400000);
-   // }
+  // if (1 != 1) {
+  //      something();
+  // } else {
+  //      something();
+  //      somethingElse();
+  // }
+
+  var x = 1 >>> 2;
+
 }
 
-//function turnLightOn(var base) {
-//    Write(base + 40, 0x00010000);
-//}
-//
-//function turnLightOff(var base) {
-//    Write(base + 28, 0x00010000);
-//}
 
 function something() {
 

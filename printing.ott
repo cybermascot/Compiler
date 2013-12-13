@@ -1,0 +1,46 @@
+
+var gpioBase = 0x20200000;
+var uartBase = gpioBase + 0x1000;
+
+function main() {
+    while (0 == 0) {
+        writeChar(0x48);
+        writeChar(0x65);
+        writeChar(0x6C);
+        writeChar(0x6C);
+        writeChar(0x6F);
+        writeChar(0x20);
+
+        Delay(0x00400000);
+    }
+}
+
+function writeChar(var char) {
+    var flag = 1;
+    while (flag != 0) {
+      flag = Read(uartBase + 0x18); // FR Register
+      flag = And(flag, 0x20);
+    }
+    Write(uartBase, char);
+    Delay(0x00400000);
+}
+
+function writeHex(var num) {
+
+}
+
+function initPrinting() {
+    Write(uartBase + 0x30, 0x0);
+    Write(gpioBase + 0x94, 0x0);
+    Delay(0x00400000);
+    Write(gpioBase + 0x98, 0xC000);
+    Delay(0x00400000);
+    Write(gpioBase + 0x98, 0x0);
+
+    Write(uartBase + 0x44, 0x7FF);
+    Write(uartBase + 0x24, 0x1);
+    Write(uartBase + 0x28, 40);
+    Write(uartBase + 0x2C, 0x70);
+    Write(uartBase + 0x38, 0x7F2);
+    Write(uartBase + 0x30, 0x301);
+}

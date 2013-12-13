@@ -1,6 +1,6 @@
 package ott.compiler;
 
-import ott.compiler.compileable.types.ConditionOpType;
+import ott.compiler.compileable.types.*;
 import ott.parsing.*;
 
 public enum CompilerTokens implements TokenType {
@@ -8,6 +8,7 @@ public enum CompilerTokens implements TokenType {
     ADD_OP("\\+|-"),
     MUL_OP("\\*"),
     NUMBER("0x(\\d|[A-F])+|\\d+"),
+    SHIFT(ShiftType.getRegex()),
     CONDITION_OP(ConditionOpType.getRegex()),
     SPECIAL("\\(|\\)|=|;|,"),
     FUNCTION("function "),
