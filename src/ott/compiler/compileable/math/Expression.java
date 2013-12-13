@@ -12,7 +12,7 @@ public class Expression implements Compilable {
 
     @Override
     public void parse(CompilableInfo info) {
-        expression = new And();
+        expression = new Or();
         expression.parse(info);
     }
 
