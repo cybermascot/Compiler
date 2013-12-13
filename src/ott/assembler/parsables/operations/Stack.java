@@ -51,7 +51,7 @@ public class Stack implements Parsable {
             ldrstr.type = type.isLoadOperation() ? (isBlock ? LdrStrType.LOAD_BLOCK : LdrStrType.LOAD) : (isBlock ? LdrStrType.STORE_BLOCK : LdrStrType.STORE);
             ldrstr.immediate = true;
             ldrstr.writeback = type.needsWriteback() || isBlock; // block always needs writeback - post doesn't - pop does
-            ldrstr.preindexing = type.isLoadOperation(); // since stack pointer will point to empty slot-want to use pre-indexing for a load from stack to move back 4 before pulling the value
+            ldrstr.preindexing = type.isLoadOperation() || type == StackType.POKE; // since stack pointer will point to empty slot-want to use pre-indexing for a load from stack to move back 4 before pulling the value
             if (isBlock) {
                 ldrstr.pullRegistersForBlock(input, STACK_REGISTER);
                 ldrstr.number = type.isLoadOperation() ? -1 : 1;
