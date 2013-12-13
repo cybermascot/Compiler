@@ -5,10 +5,10 @@ import ott.parsing.ParseException;
 public enum ConditionOpType {
     EQUAL("==", "NE"),
     NOT_EQUAL("!=", "EQ"),
-    LESS_THAN("<", "GE"),
     LESS_THAN_OR_EQUAL("<=", "GT"),
-    GREATER_THAN(">", "LE"),
-    GREATER_THAN_OR_EQUAL(">=", "LT");
+    LESS_THAN("<", "GE"),
+    GREATER_THAN_OR_EQUAL(">=", "LT"),
+    GREATER_THAN(">", "LE");
 
     private String regex;
     private String negative;
