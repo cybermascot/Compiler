@@ -124,9 +124,13 @@ public class Helper {
     }
 
     public static <K> void removeIf(Map<K,?> map, Predicate<K> predicate) {
+        Set<K> toRemove = new HashSet<>();
         for (K key : map.keySet()) {
             if (predicate.test(key))
-                map.remove(key);
+                toRemove.add(key);
+        }
+        for (K key : toRemove) {
+            map.remove(key);
         }
     }
 }
