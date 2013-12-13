@@ -10,9 +10,15 @@ import java.util.*;
 
 public class Factor implements Compilable {
     private Compilable value; // can either be expression, a constant, or a variable
+    private boolean not = false;
 
     @Override
     public void parse(CompilableInfo info) {
+        if (isNextValue(info.tokens, "~")) {
+            not = true;
+            pullToken(info.tokens, "~");
+        }
+
         if (isNextValue(info.tokens, "(")) {
             pullToken(info.tokens, "(");
             value = new Expression();
@@ -41,5 +47,7 @@ public class Factor implements Compilable {
     @Override
     public void generate(StringBuilder builder) {
         value.generate(builder);
+        if (not)
+            appendLine(builder, "MVN R0,R0"); // not R0 before moving on
     }
 }

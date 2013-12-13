@@ -12,6 +12,7 @@ public enum CompilerTokens implements TokenType {
     SPECIAL("\\(|\\)|=|;|,"),
     FUNCTION("function "),
     VARIABLE("var "),
+    BITWISE("&|\\||\\^|~"),
     CONTROL("if|else|while"), // do|for
     LABEL("[a-zA-z]([a-zA-z]|\\d)*"),
     UNKOWN("\\S+"); // aggressive regex for anything not already registered

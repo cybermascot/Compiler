@@ -12,7 +12,7 @@ import static ott.assembler.parsables.Helper.*;
 
 /**
  * <pre>
- * 1. DATAPROC is CMP | MOV
+ * 1. DATAPROC is CMP | MOV | MVN
  * DATAPROC {cond} I REGISTER, NUMBER
  * DATAPROC [cond] I REGISTER, LABEL
  * DATAPROC [cond] REGISTER, REGISTER [, SHIFT NUMBER]
