@@ -45,7 +45,7 @@ public class Condition implements Compilable {
         right.generate(builder);
         appendLine(builder, "POP R1");
 
-        appendLine(builder, "CMP R1,R0");
+        appendLine(builder, "CMP R0,R1");
         appendLine(builder, "B ", op.getNegativeText(), " ", falseLabel); // if (1 == 2) ...  -> B NE falseLabel
 
     }

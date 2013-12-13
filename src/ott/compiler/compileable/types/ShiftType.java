@@ -3,9 +3,9 @@ package ott.compiler.compileable.types;
 import ott.parsing.*;
 
 public enum ShiftType {
-    RIGHT_WITH_SIGN(">>>", "ASR"),
-    LEFT("<<", "LSL"),
-    RIGHT(">>", "LSR");
+    RIGHT(">>>", "LSR"),
+    RIGHT_WITH_SIGN(">>", "ASR"),
+    LEFT("<<", "LSL");
 
     private String regex;
     private String syntax;
