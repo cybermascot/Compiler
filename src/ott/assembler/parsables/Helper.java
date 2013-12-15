@@ -130,7 +130,7 @@ public class Helper {
         assert (firstBit % 2 == 0);
 
         int rotate = 32 - firstBit;
-        int value = value8bit >> firstBit; // shift amount - plus an extra if the first bit is in odd loc
+        int value = value8bit >>> firstBit; // shift amount - plus an extra if the first bit is in odd loc
         value |= (rotate / 2) << 8;
 
         value &= 0xFFF; // only grab 12 bits in case of roll over
