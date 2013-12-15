@@ -51,7 +51,11 @@ public class Compiler {
     }
 
     public static void main(String[] args) throws Exception {
-        File source = new File("program.ott");
+        String sourceFileName = "program";
+        if (args.length > 0)
+            sourceFileName = args[0];
+
+        File source = new File(sourceFileName + ".ott");
         File dest = new File("assembly.asm");
         compile(source, dest);
 
