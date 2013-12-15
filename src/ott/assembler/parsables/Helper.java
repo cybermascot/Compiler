@@ -94,12 +94,12 @@ public class Helper {
     public static boolean isMoreThan8ContiguousBits(int num) {
         int firstBit = -1;
         for (int i = 0, multof2 = 0; i < 32; i++) { // find first bit from right to left
+            if (i % 2 == 0)
+                multof2 = i;
             if ((num & (1 << i)) != 0) {
                 firstBit = multof2;
                 break;
             }
-            if (i % 2 == 0)
-                multof2 = i;
         }
 
         if (firstBit == -1)
