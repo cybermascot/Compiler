@@ -1,26 +1,25 @@
 
+var gpioBase = 0x20200000;
+
 function main() {
+    Write(gpioBase + 4, 0x00040000); // turn controller on
 
-    // while (1 == 1) {
+    var digit = 0x12345678 & 0xF0000000; // >>> 28;
 
-    // }
+     if (digit == 0x10000000) {
+         turnLightOn(gpioBase);
+     }
+     Delay(0x00400000);
 
-  // if (1 != 1) {
-  //      something();
-  // } else {
-  //      something();
-  //      somethingElse();
-  // }
-
-  var x = 1 & 2 << 3;
+     while (0 == 0) {
+     }
 
 }
 
-
-function something() {
-
+function turnLightOn(var base) {
+    Write(base + 40, 0x00010000);
 }
 
-function somethingElse() {
-
+function turnLightOff(var base) {
+    Write(base + 28, 0x00010000);
 }

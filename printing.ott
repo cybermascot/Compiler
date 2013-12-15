@@ -4,29 +4,43 @@ var uartBase = gpioBase + 0x1000;
 
 function main() {
     while (0 == 0) {
-        writeChar(0x48);
-        writeChar(0x65);
-        writeChar(0x6C);
-        writeChar(0x6C);
-        writeChar(0x6F);
-        writeChar(0x20);
+        //writeChar(0x48);
+        //writeChar(0x65);
+        //writeChar(0x6C);
+        //writeChar(0x6C);
+        //writeChar(0x6F);
+        //writeChar(0x20);
 
-        Delay(0x00400000);
+        //Delay(0x00400000);
+
+        var num = 0x12345678;
+
+        writeHex(num);
+        writeChar(0x20);
     }
 }
 
 function writeChar(var char) {
     var flag = 1;
     while (flag != 0) {
-      flag = Read(uartBase + 0x18); // FR Register
-      flag = And(flag, 0x20);
+      flag = Read(uartBase + 0x18) & 0x20; // FR Register
     }
     Write(uartBase, char);
-    Delay(0x00400000);
 }
 
-function writeHex(var num) {
+function writeHex(var number) {
+    var num = number;
+    while (num != 0) {
+        var digit = (num & 0xF0000000) >>> 28;
+        if (digit >= 10) {
+            digit = digit + 0x37; // hex digit
+        } else {
+            digit = digit + 0x30; // decimal digit
+        }
+        writeChar(digit);
 
+        num = num << 4;
+    }
 }
 
 function initPrinting() {
